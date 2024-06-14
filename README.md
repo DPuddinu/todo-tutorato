@@ -37,3 +37,6 @@ Ogni task per essere eseguito dovrà partire dalla branch develop e seguirà que
 - chore-numero-del-task                  &nbsp;&nbsp;&nbsp;&nbsp;quando facciamo modifiche strutturali, di dipendenze
 
 Terremo traccia delle modifiche fatte all'interno di un changelog file in markdown usando [semantic versioning](https://semver.org/).
+
+Al termine di ogni task, dovrà essere pushata la branch su cui si sta lavorando e andrà aperta una pull request, il project manager dovrà effettuare una code review ed approvare o rinviare la pull request in caso ci sia qualcosa da correggere.
+Ogni partecipante dovrà comunicare con il Project manager nel momento in cui verrà fatta una PR (pull request), e nel momento in cui verrà effettuata la merge, dovrà essere fatto un pull della branch develop per rimanere allineati.
