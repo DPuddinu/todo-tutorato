@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/common.css" />
+    <title>Document</title>
+  </head>
+  <body>
+      <form id="login-form">
+        <input id="user" type="email" placeholder="Email" required/>
+        <input id="pass" type="password" placeholder="Password" required/>
+        <br>
+        <br>
+        <p>
+          By creating an account you agree to our
+          <a href="#">Terms & Privacy</a>.
+        </p>
+        <br />
+        <br />
+        <input type="submit" onclick="login()" value="Login"/>
+        <br />
+        <br />
+        <div class="container signin">
+        <p>Don't have an account? <a href="register.html">Sign up</a>.</p>
+      </form>
+    <script src="lib/common.js"></script>
+  </body>
+</html>
