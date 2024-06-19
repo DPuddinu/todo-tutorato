@@ -8,9 +8,9 @@
   </head>
   <body>
       <form id="register-form">
-        <input id="user" type="user" placeholder="User" required/>
-        <input id="pass" type="password" placeholder="Password" required/>
-        <input id="repass" type="password" placeholder="Re write Password" required/>
+        <input min="3" max= "10" id="user" type="user" placeholder="User" required/>
+        <input min="5" id="pass" type="password" placeholder="Password" required/>
+        <input min="5" id="repass" type="password" placeholder="Re write Password" required/>
         <br />
         <br />
         <hr />
@@ -25,7 +25,8 @@
           <p>Already have an account? <a href="login.html">Sign in</a>.</p>
         </div>
       </form>
+      <p id="demo">Hello!</p>
     </main>
-    <script src="lib/common.js"></script>
+    <script src="lib/login.js"></script>
   </body>
 </html>
