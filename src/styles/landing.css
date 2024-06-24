@@ -1,9 +1,119 @@
-#sect1,
-#sect3,
-footer {
-  background-color: #75cdf5;
+body {
+  background-color: #f9faff;
 }
+
+h1 {
+  font-size: 5vw;
+}
+h2 {
+  text-align: center;
+  font-size: 3vw;
+}
+p {
+  /* font-size: clamp(14px, 16px, 20px); */
+  font-size: 20px;
+  /* font-weight: 520; */
+}
+
+#hero-section {
+  /* border: 2px solid red; */
+  height: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#hero-left {
+  /* border: 5px solid green; */
+  max-width: 400px;
+  /* margin-left: 4vw; */
+  /* margin: 2vw; */
+  margin-left: 8vw;
+}
+
+#text-hero {
+  /* border: 2px solid blue; */
+  /* width: 50%; */
+  text-align: center;
+  padding: 5px 25px;
+}
+
+#login-button-div {
+  /* border: 2px solid purple; */
+  /* width: 20%; */
+  text-align: center;
+  padding: 15px 6px;
+}
+
 #loginButton {
   background-color: #0092b9;
   color: white;
+  font-size: 1.25vw;
+  padding: 1vw;
+  text-decoration: none;
+}
+
+#link-new-acc {
+  text-decoration: none;
+  color: #0091b9c1;
+  font-size: 20px;
+}
+#link-new-acc:hover {
+  text-decoration: underline;
+  color: #393f40;
+}
+
+#div-image-hero {
+  /* border: 2px solid yellow; */
+  margin: auto;
+}
+
+/* SEZIONE FEATURE */
+
+/* sezione div feature */
+.div-feature {
+  background-color: #0091b9c1;
+  display: flex;
+  padding: 35px;
+  margin: 25px;
+}
+
+.img-feat {
+  width: 50%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+}
+
+.div-text-feat {
+  font-size: 25px;
+  padding: 15px;
+}
+
+.button:hover {
+  background-color: #0091b9c1;
+  transition: 0.3s;
+}
+
+.link-feat-white {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.link-feat-white:hover,
+.link-feat-col:hover {
+  text-decoration: underline;
+  color: #393f40;
+}
+
+.logo-big {
+  width: 42px;
+  height: 42px;
+}
+
+.logo-social {
+  width: 22px;
+  height: 22px;
 }
