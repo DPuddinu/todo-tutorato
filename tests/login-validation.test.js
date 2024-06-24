@@ -1,4 +1,7 @@
-//Minimum eight characters, at least one letter, one number and one special character:
+import { validateRegister, generateId } from "./src/lib/login";
+import { expect, test } from "vitest";
+
+ //Minimum eight characters, at least one letter, one number and one special character:
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
 
@@ -36,4 +39,52 @@ test("password must contain upper case letters", () => {
 
 test("password shouldn't be null/empty", () => {
   expect(passwordRegex.test("")).toBe(false);
+});
+
+test("verify generate id function", () => {
+  expect(generateId()).greaterThanOrEqual(0);
+  expect(generateId()).lessThanOrEqual(9999999);
+});
+
+test("verify register form validation", () => {
+  const nameError = validateRegister({
+    //name length
+    name: "pi",
+    password: "Aasd123@",
+    passwordConfirm: "Aasd123@",
+  });
+  const missNameError = validateRegister({
+    //missing name
+    name: "",
+    password: "Aasd123@",
+    passwordConfirm: "Aasd123@",
+  });
+  const pwError = validateRegister({
+    //missing password
+    name: "pio&amedeo",
+    password: "",
+    passwordConfirm: "amedeo",
+  });
+  const confirmPwError = validateRegister({
+    //confirm password !== password
+    name: "pio",
+    password: "Aasd123@",
+    passwordConfirm: "Aasd123$",
+  });
+  const missConfirmPwError = validateRegister({
+    //missing confirm password
+    name: "pio",
+    password: "Aasd123@",
+    passwordConfirm: "",
+  });
+
+  expect(nameError.user).toEqual(
+    "The username must be between 3 and 10 characters"
+  );
+  expect(missNameError.user).toEqual("Username required");
+  expect(pwError.pass).toEqual("Invalid password");
+  expect(confirmPwError.confirm).toEqual(
+    "Password don't match retype your Password" // a prescindere dall'errore in "passwordConfirm" stampa questo
+  );
+  expect(missConfirmPwError.confirm).toEqual("Confirm password required"); //conferma del commento della riga 47
 });
