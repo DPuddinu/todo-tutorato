@@ -1,4 +1,4 @@
-import { User } from "./models/user";
+import { User } from "./models/user.js";
 
 const USERNAME_KEY = "user";
 const PASS_KEY = "pass";
@@ -6,8 +6,7 @@ const CONFIRM_KEY = "confirm";
 const USERS_KEY = "users";
 //Funzione per prendere i dati
 export function getCredentialRegister() {
-  const name = document.getElementById(USERNAME_KEY).value;
-  const password = document.getElementById(PASS_KEY).value;
+  const { name, password } = getCredentialLogin();
   const passwordConfirm = document.getElementById(CONFIRM_KEY).value;
   return { name, password, passwordConfirm };
 }
@@ -16,7 +15,7 @@ export function getCredentialLogin() {
   const password = document.getElementById(PASS_KEY).value;
   return { name, password };
 }
-//Funzione registrazione
+
 export function register({ name, password, passwordConfirm }) {
   const validationErrors = validateRegister({
     name,
@@ -24,29 +23,36 @@ export function register({ name, password, passwordConfirm }) {
     passwordConfirm,
   });
 
-  if (validationErrors.length !== 0) {
+  if (Object.keys(validationErrors).length !== 0) {
+    alert(JSON.stringify(validationErrors));
     return;
   }
+
   const id = generateId();
+  const newUser = new User({ id, name });
+
   // prendi l'oggetto users dalla key USERS_KEY, convertilo in oggetto con JSON.parse(), verifica che non sia già presente l'utente, se non è presente fai il push del nuovo utente nell'array, infine salva il nuovo array nel localstorage
   // Recupera l'oggetto users dal localStorage
   const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-  const user = users.find((user) => user.id === newUser.id);
-  if(user) return user;
 
   // Verifica che l'utente non sia già presente
-  users.push(new User({ id, name }));
+  const userExists = users.some((user) => user.id === newUser.id);
 
-  // Salva il nuovo array nel localStorage
-  localStorage.setItem(id, JSON.stringify(users));
-  return !!newUser;
+  if (!userExists) {
+    // Aggiungi il nuovo utente all'array
+    users.push(newUser);
+
+    // Salva il nuovo array nel localStorage
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    alert("Registrazione completata!");
+  }
 }
 //Funzione calcolo id univoco
 export function generateId() {
   return Math.random() * 9999999;
 }
 //Funzione login
-export function login(/*{ user, password }*/) {
+export function login() {
   // Recuperare tutti gli utenti dal localStorage
   const user = getCredentialLogin({ user });
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
@@ -66,12 +72,9 @@ export function login(/*{ user, password }*/) {
 //Funzione per controllare i dati in ingresso
 export function validateRegister({ name, password, passwordConfirm }) {
   let errors = {};
-
-  const regEx = new RegExp(
-    "/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@.#$!%*?&])[A-Za-zd@.#$!%*?&]{8,15}$/"
-  );
-
-  if ( name.length < 3 || name.length > 10 )
+  const regEx =
+    "/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@.#$!%*?&])[A-Za-zd@.#$!%*?&]{8,15}$/";
+  if (name.length > 10 || name.length < 3)
     errors[USERNAME_KEY] = "The username must be between 3 and 10 characters";
 
   if (name === "") errors[USERNAME_KEY] = "Username required";
@@ -80,6 +83,6 @@ export function validateRegister({ name, password, passwordConfirm }) {
     errors[CONFIRM_KEY] = "Password don't match retype your Password";
 
   if (!regEx.test(password))
-    errors[PASS_KEY] = "Invalid password";
+    errors[PASS_KEY] = "La password non include caratteri speciali";
   return errors;
 }

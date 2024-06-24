@@ -8,23 +8,27 @@
   </head>
   <body>
       <form id="login-form">
-        <input id="user" type="user" placeholder="user" required/>
+        <input id="user" type="user" placeholder="User" required/>
+        <br>
+        <br>
         <input id="pass" type="password" placeholder="Password" required/>
         <br>
         <br>
+        <hr>
         <p>
           By creating an account you agree to our
           <a href="#">Terms & Privacy</a>.
         </p>
         <br />
         <br />
-        <input type="submit" onclick="login()" value="Login"/>
+        <input type="submit" onclick="handleLogin()" value="Login"/>
         <br />
         <br />
         <div class="container signin">
         <p>Don't have an account? <a href="register.html">Sign up</a>.</p>
       </form>
-      <p id="demo">brrrr</p>
-    <script src="lib/login.js"></script>
+      <p id="demo">Hello!</p>
+    <script type="module" src="lib/login.js"></script>
+    <script type="module" src="lib/models/user.js"></script>
   </body>
 </html>
