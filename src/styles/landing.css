@@ -1,5 +1,10 @@
+@font-face {
+  font-family: "Inter-Regular";
+  src: url("../../assets/fonts/Inter-Regular.ttf");
+}
 body {
   background-color: #f9faff;
+  font-family: "Inter-Regular";
 }
 
 h1 {
