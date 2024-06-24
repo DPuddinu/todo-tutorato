@@ -9,8 +9,12 @@
   <body>
       <form id="register-form">
         <input min="3" max= "10" id="user" type="user" placeholder="User" required/>
+        <br>
+        <br>
         <input min="5" id="pass" type="password" placeholder="Password" required/>
-        <input min="5" id="repass" type="password" placeholder="Re write Password" required/>
+        <br>
+        <br>
+        <input min="5" id="confirm" type="password" placeholder="Re write Password" required/>
         <br />
         <br />
         <hr />
@@ -20,13 +24,14 @@
         </p>
         <br />
         <br />
-        <input type="submit" onclick="register()" value="Register" />
+        <input type="submit" onclick="handleregister()" value="Register" />
         <div class="container signin">
           <p>Already have an account? <a href="login.html">Sign in</a>.</p>
         </div>
       </form>
-      <p id="demo">Hello!</p>
+      <h3 id="demo">Hello!</h3>
     </main>
-    <script src="lib/login.js"></script>
+    <script type="module" src="lib/login.js"></script>
+    <script type="module" src="lib/models/user.js"></script>
   </body>
 </html>
