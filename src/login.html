@@ -4,14 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/common.css" />
+    <style>
+      .error{
+        color: red;
+      } 
+    </style>
     <title>Document</title>
   </head>
   <body>
-      <form id="login-form">
-        <input id="user" type="user" placeholder="User" required/>
+      <form id="loginForm">
+        <input id="user" type="user" placeholder="User" />
+        <div id="errorUser" class="error"></div>
         <br>
         <br>
-        <input id="pass" type="password" placeholder="Password" required/>
+        <input id="pass" type="password" placeholder="Password" />
+        <div id="errorPass" class="error"></div>
         <br>
         <br>
         <hr>
@@ -21,14 +28,14 @@
         </p>
         <br />
         <br />
-        <input type="submit" onclick="handleLogin()" value="Login"/>
+        <button type="submit" value="submit">Entra!</button>
         <br />
         <br />
         <div class="container signin">
         <p>Don't have an account? <a href="register.html">Sign up</a>.</p>
       </form>
-      <p id="demo">Hello!</p>
-    <script type="module" src="lib/login.js"></script>
     <script type="module" src="lib/models/user.js"></script>
+    <script type="module" src="lib/auth.js"></script>
+    <script type="module" src="lib/login-user.js"></script>
   </body>
 </html>

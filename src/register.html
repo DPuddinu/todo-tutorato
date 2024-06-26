@@ -4,17 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/common.css" />
+    <style>
+      .error{
+        color: red;
+      } 
+    </style>
     <title>Document</title>
   </head>
   <body>
-      <form id="register-form">
-        <input min="3" max= "10" id="user" type="user" placeholder="User" required/>
+      <form id="registerForm">
+        <input min="3" max= "10" id="user" type="user" placeholder="User" />
+        <div id="errorUser" class="error"></div>
         <br>
         <br>
-        <input min="5" id="pass" type="password" placeholder="Password" required/>
+        <input min="5" id="pass" type="password" placeholder="Password" />
+        <div id="errorPass" class="error"></div>
         <br>
         <br>
-        <input min="5" id="confirm" type="password" placeholder="Re write Password" required/>
+        <input min="5" id="confirm" type="password" placeholder="Re write Password" />
+        <div id="errorConfi" class="error"></div>
         <br />
         <br />
         <hr />
@@ -24,14 +32,14 @@
         </p>
         <br />
         <br />
-        <input type="submit" onclick="handleregister()" value="Register" />
+        <button type="submit" value="submit">Registrati!</button>
         <div class="container signin">
           <p>Already have an account? <a href="login.html">Sign in</a>.</p>
         </div>
       </form>
-      <h3 id="demo">Hello!</h3>
     </main>
-    <script type="module" src="lib/login.js"></script>
     <script type="module" src="lib/models/user.js"></script>
+    <script type="module" src="lib/auth.js"></script>
+    <script type="module" src="lib/register-user.js"></script>
   </body>
 </html>
