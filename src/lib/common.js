@@ -1,3 +1,3 @@
 export function generateId() {
-  return Math.random() * 9999999;
+  return Math.floor(Math.random() * 9999999);
 }
