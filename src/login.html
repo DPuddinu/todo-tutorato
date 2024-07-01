@@ -7,28 +7,22 @@
     <title>Document</title>
   </head>
   <body>
-      <form id="login-form">
-        <input id="user" type="user" placeholder="User" required/>
-        <br>
-        <br>
-        <input id="pass" type="password" placeholder="Password" required/>
-        <br>
-        <br>
+      <form id="loginForm">
+        <input id="user" type="user" placeholder="User" />
+        <div id="errorUser" class="error"></div>
+        <input id="pass" type="password" placeholder="Password" />
+        <div id="errorPass" class="error"></div>
         <hr>
         <p>
           By creating an account you agree to our
           <a href="#">Terms & Privacy</a>.
         </p>
-        <br />
-        <br />
-        <input type="submit" onclick="handleLogin()" value="Login"/>
-        <br />
-        <br />
+        <button type="submit" value="submit">Entra!</button>
         <div class="container signin">
         <p>Don't have an account? <a href="register.html">Sign up</a>.</p>
       </form>
-      <p id="demo">Hello!</p>
-    <script type="module" src="lib/login.js"></script>
     <script type="module" src="lib/models/user.js"></script>
+    <script type="module" src="lib/auth.js"></script>
+    <script type="module" src="lib/login-user.js"></script>
   </body>
 </html>

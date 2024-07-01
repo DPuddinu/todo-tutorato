@@ -1,9 +1,10 @@
 import { User } from "./models/user.js";
+import { generateId } from "./common.js";
 
-const USERNAME_KEY = "user";
-const PASS_KEY = "pass";
-const CONFIRM_KEY = "confirm";
-const USERS_KEY = "users";
+export const USERNAME_KEY = "user";
+export const PASS_KEY = "pass";
+export const CONFIRM_KEY = "confirm";
+export const USERS_KEY = "users";
 //Funzione per prendere i dati
 export function getCredentialRegister() {
   const { name, password } = getCredentialLogin();
@@ -47,19 +48,15 @@ export function register({ name, password, passwordConfirm }) {
     alert("Registrazione completata!");
   }
 }
-//Funzione calcolo id univoco
-export function generateId() {
-  return Math.random() * 9999999;
-}
+
 //Funzione login
-export function login() {
+export function login({ name, password }) {
   // Recuperare tutti gli utenti dal localStorage
-  const user = getCredentialLogin({ user });
   const users = JSON.parse(localStorage.getItem(USERS_KEY));
   // Cicla su tutti gli utenti
-  for (let user of users) {
+  for (const user of users) {
     // Verifica che ci sia un utente con nome e password corretti
-    if (user.name === username && user.password === password) {
+    if (user.name === name && user.password === password) {
       alert("Grazie per esserti loggato!");
       return user; // Ritorna l'utente trovato
     }
@@ -72,7 +69,7 @@ export function login() {
 //Funzione per controllare i dati in ingresso
 export function validateRegister({ name, password, passwordConfirm }) {
   let errors = {};
-  const regEx =
+  const regex =
     "/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@.#$!%*?&])[A-Za-zd@.#$!%*?&]{8,15}$/";
   if (name.length > 10 || name.length < 3)
     errors[USERNAME_KEY] = "The username must be between 3 and 10 characters";
@@ -82,7 +79,39 @@ export function validateRegister({ name, password, passwordConfirm }) {
   if (password !== passwordConfirm && passwordConfirm !== "")
     errors[CONFIRM_KEY] = "Password don't match retype your Password";
 
-  if (!regEx.test(password))
+  if (!regex.test(password))
     errors[PASS_KEY] = "La password non include caratteri speciali";
   return errors;
+}
+
+export function validateLogin({ name, password }) {
+  let errors = {};
+
+  if (name === "") errors[USERNAME_KEY] = "Username required";
+  if (password === "") errors[PASS_KEY] = "Password required";
+
+  return errors;
+}
+
+export function controlRegister(validate) {
+  if (validate[USERNAME_KEY]) {
+    document.getElementById("errorUser").textContent = validate[USERNAME_KEY];
+  }
+  if (validate[PASS_KEY]) {
+    document.getElementById("errorPass").textContent = validate[PASS_KEY];
+  }
+  if (validate[CONFIRM_KEY]) {
+    document.getElementById("errorConfi").textContent = validate[CONFIRM_KEY];
+  }
+  return validate;
+}
+
+export function controlLogin(validate) {
+  if (validate[USERNAME_KEY]) {
+    document.getElementById("errorUser").textContent = validate[USERNAME_KEY];
+  }
+  if (validate[PASS_KEY]) {
+    document.getElementById("errorPass").textContent = validate[PASS_KEY];
+  }
+  return validate;
 }
