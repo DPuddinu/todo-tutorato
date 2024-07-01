@@ -2,8 +2,7 @@ import {
   getCredentialLogin,
   validateLogin,
   login,
-  USERNAME_KEY,
-  PASS_KEY,
+  controlLogin,
 } from "./auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,17 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const credential = getCredentialLogin();
     const validate = validateLogin(credential);
 
-    if (validate) {
-      if (validate[USERNAME_KEY]) {
-        document.getElementById("errorUser").innerHTML = validate[USERNAME_KEY];
-      }
-      if (validate[PASS_KEY]) {
-        document.getElementById("errorPass").innerHTML = validate[PASS_KEY];
-      }
-    }
+    controlLogin(validate);
+
     const log = login(credential);
-    if (!log) {
-      window.location = "./index.html";
+    if (log) {
+      window.location = "./homepage.html";
     }
   });
 });

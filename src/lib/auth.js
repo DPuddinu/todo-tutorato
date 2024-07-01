@@ -92,3 +92,26 @@ export function validateLogin({ name, password }) {
 
   return errors;
 }
+
+export function controlRegister(validate) {
+  if (validate[USERNAME_KEY]) {
+    document.getElementById("errorUser").textContent = validate[USERNAME_KEY];
+  }
+  if (validate[PASS_KEY]) {
+    document.getElementById("errorPass").textContent = validate[PASS_KEY];
+  }
+  if (validate[CONFIRM_KEY]) {
+    document.getElementById("errorConfi").textContent = validate[CONFIRM_KEY];
+  }
+  return validate;
+}
+
+export function controlLogin(validate) {
+  if (validate[USERNAME_KEY]) {
+    document.getElementById("errorUser").textContent = validate[USERNAME_KEY];
+  }
+  if (validate[PASS_KEY]) {
+    document.getElementById("errorPass").textContent = validate[PASS_KEY];
+  }
+  return validate;
+}
